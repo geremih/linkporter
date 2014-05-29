@@ -1,0 +1,9 @@
+{
+  "name": "teleporter",
+  "version": "0.0.1",
+  "description": "Send links around",
+  "dependencies": {
+    "socket.io": "~0.9.16",
+    "express": "~3.4.8"
+  }
+}
