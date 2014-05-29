@@ -42,6 +42,7 @@
       var socket = io.connect();
       $('form').submit(function(){
       socket.emit('url transfer', $('#url').val());
+      $('#url').val('');
       return false;
       });
       socket.on('url transfer', function(url){
