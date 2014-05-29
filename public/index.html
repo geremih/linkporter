@@ -1,0 +1,28 @@
+<html>
+  <head>
+    Teleporter
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  </head>
+  <body>
+    <form>
+      <input id="url"/>
+      <button>Send </button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+       var socket = io.connect('http://localhost:3000');
+      $('form').submit(function(){
+      alert("submit");
+      socket.emit('url transfer', $('#url').val());
+      return false;
+      });
+      socket.on('url transfer', function(url){
+      alert( "received "  + url);
+       window.open(url,"_self");
+      });
+    </script>
+
+  </body>
+</html>
