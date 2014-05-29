@@ -1,14 +1,41 @@
 <html>
   <head>
-    Teleporter
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <title>
+      LinkPorter
+    </title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css">
   </head>
   <body>
-    <form>
-      <input id="url"/>
-      <button>Send </button>
-    </form>
+    <div class="container">
 
+      <div class="col-md-4 col-md-offset-4">
+        <div class="page-header">
+          <h1>
+            LinkPorter
+          </h1>
+        </div>
+        <p class="lead">
+          Sharing links has never been easier
+        </p>
+
+        <div class="row">
+          <form  role="form">
+            <div class="form-group">
+              <input id="url" class="form-control" placeholder="Paste your link here"/>
+            </div>
+            <button class="btn btn-primary btn-large">Send </button>
+
+          </form>
+
+        </div>
+        <div class="row">
+          Connected Users:
+          <div id="count">
+            0
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
@@ -18,7 +45,10 @@
       return false;
       });
       socket.on('url transfer', function(url){
-       window.open(url,"_self");
+      window.open(url,"_self");
+      });
+      socket.on('count', function(count){
+      $('#count').text( count-1);
       });
     </script>
 
