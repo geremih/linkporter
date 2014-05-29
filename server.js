@@ -6,8 +6,6 @@ app.get('/', function(req , res) {
     res.sendfile('public/index.html');
 });
 
-app.use('/js',express.static(path.join(__dirname, 'public/javascripts')));
-app.use('/css',express.static(path.join(__dirname, 'public/stylesheets')));
 
 io.on('connection', function(socket){
     console.log('a user connected');
