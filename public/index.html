@@ -4,6 +4,7 @@
       LinkPorter
     </title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css">
+
   </head>
   <body>
     <div class="container">
@@ -36,22 +37,8 @@
         </div>
       </div>
     </div>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
-      var socket = io.connect();
-      $('form').submit(function(){
-      socket.emit('url transfer', $('#url').val());
-      $('#url').val('');
-      return false;
-      });
-      socket.on('url transfer', function(url){
-      window.open(url,"_self");
-      });
-      socket.on('count', function(count){
-      $('#count').text( count-1);
-      });
-    </script>
-
+            <script src="/socket.io/socket.io.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/js/index.js"> </script>
   </body>
 </html>
