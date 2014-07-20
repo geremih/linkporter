@@ -9,6 +9,8 @@ $( function (){
     console.log("File loaded");
     function send_url (url){
         socket.emit('url transfer',url);
+        $("#submit-button").text("Send");
+        
     }
 
     
@@ -16,6 +18,7 @@ $( function (){
         var url =  $('#url').val();
         if(count === 0){
             url_queue.push(url);
+            $("#submit-button").text("Waiting for users to connect");
         }
         else{
             send_url(url);
