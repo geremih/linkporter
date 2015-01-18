@@ -60,6 +60,7 @@ linkPortApp.controller('LinkPortCtrl', function($scope, mySocket){
 
     //When url transfer is received, open link
     mySocket.on('url transfer', function(link){
+        mySocket.disconnect();
         window.open(link,"_self");
     });
 
