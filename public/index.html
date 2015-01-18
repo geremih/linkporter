@@ -1,44 +1,56 @@
-<html>
-  <head>
-    <title>
-      LinkPorter
-    </title>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css">
-
-  </head>
-  <body>
-    <div class="container">
-
-      <div class="col-md-4 col-md-offset-4">
-        <div class="page-header">
-          <h1>
+<html ng-app="linkPortApp">
+    <head>
+        <title>
             LinkPorter
-          </h1>
-        </div>
-        <p class="lead">
-          Sharing links has never been easier
-        </p>
-
-        <div class="row">
-          <form  role="form">
-            <div class="form-group">
-              <input id="url" class="form-control" placeholder="Paste your link here"/>
+        </title>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css">
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/angular-socket-io/socket.js"></script>
+        <script src="/js/controllers.js"></script>
+    </head>
+    <body ng-controller="LinkPortCtrl">
+        <div class="container">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="page-header">
+                    <h1>
+                        LinkPorter
+                    </h1>
+                </div>
+                <p class="lead">
+                    Sharing links has never been easier
+                </p>
+                <div class="row">
+                    <form  role="form">
+                        <div class="form-group">
+                            <input class="form-control" ng-model="link" placeholder="Paste your link here"/>
+                        </div>
+                        <button ng-click="shareLink()" class="btn btn-primary btn-large">{{buttonText}} </button>
+                    </form>
+                </div>
+                <div class="row">
+                    Connected Users:
+                    {{userCount}}
+                    Status:
+                    {{statusText}}
+                </div>
+                <div class="row">
+                    <h2>
+                        What does LinkPorter do?
+                    </h2>
+                </div>
+                <div class="row">
+                    <p>
+                        <ul>
+                            <li>The link will open automatically for all users who are connected, when you press send. </li>
+                            <li>If no one is connected, LinkPorter will wait for atleast one user to connect.</li>
+                        </ul>
+                    </p>
+                </div>
             </div>
-            <button id="submit-button"class="btn btn-primary btn-large">Send </button>
-
-          </form>
-
         </div>
-        <div class="row">
-          Connected Users:
-          <div id="count">
-            0
-          </div>
-        </div>
-      </div>
-    </div>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/js/index.js"> </script>
-  </body>
+
+
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+    </body>
 </html>
