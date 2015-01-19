@@ -1,56 +1,66 @@
 <html ng-app="linkPortApp">
-    <head>
-        <title>
+  <head>
+    <title>
+      LinkPorter
+    </title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-socket-io/socket.js"></script>
+    <script src="/js/controllers.js"></script>
+  </head>
+  <body ng-controller="LinkPortCtrl">
+    <div class="container">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="page-header">
+          <h1>
             LinkPorter
-        </title>
-        <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.css">
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="/bower_components/angular/angular.js"></script>
-        <script src="/bower_components/angular-socket-io/socket.js"></script>
-        <script src="/js/controllers.js"></script>
-    </head>
-    <body ng-controller="LinkPortCtrl">
-        <div class="container">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="page-header">
-                    <h1>
-                        LinkPorter
-                    </h1>
-                </div>
-                <p class="lead">
-                    Sharing links has never been easier
-                </p>
-                <div class="row">
-                    <form  role="form">
-                        <div class="form-group">
-                            <input class="form-control" ng-model="link" placeholder="Paste your link here"/>
-                        </div>
-                        <button ng-click="shareLink()" class="btn btn-primary btn-large">{{buttonText}} </button>
-                    </form>
-                </div>
-                <div class="row">
-                    Connected Users:
-                    {{userCount}}
-                    Status:
-                    {{statusText}}
-                </div>
-                <div class="row">
-                    <h2>
-                        What does LinkPorter do?
-                    </h2>
-                </div>
-                <div class="row">
-                    <p>
-                        <ul>
-                            <li>The link will open automatically for all users who are connected, when you press send. </li>
-                            <li>If no one is connected, LinkPorter will wait for atleast one user to connect.</li>
-                        </ul>
-                    </p>
-                </div>
-            </div>
+          </h1>
         </div>
+        <p class="lead">
+          Sharing links has never been easier
+        </p>
+        <div class="row">
+          <form  role="form">
+            <div class="form-group">
+              <input class="form-control" ng-model="link" placeholder="Paste your link here"/>
+            </div>
+            <button ng-click="shareLink()" class="btn btn-primary btn-large">{{buttonText}} </button>
+          </form>
+        </div>
+        <div class="row">
+          Connected Users:
+          {{userCount}}
+          Status:
+          {{statusText}}
+        </div>
+        <div class="row">
+          <h2>
+            What does LinkPorter do?
+          </h2>
+        </div>
+        <div class="row">
+          <p>
+            <ul>
+              <li>The link will open automatically for all users who are connected, when you press send. </li>
+              <li>If no one is connected, LinkPorter will wait for atleast one user to connect.</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
 
 
-        <script src="/bower_components/jquery/dist/jquery.js"></script>
-    </body>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-58698577-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
 </html>
