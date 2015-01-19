@@ -3,7 +3,8 @@ factory('mySocket', function (socketFactory) {
     return socketFactory();
 });
 
-linkPortApp.controller('LinkPortCtrl', function($scope, mySocket){
+linkPortApp.controller('LinkPortCtrl', function($scope, mySocket, $location){
+
     var connectedText = "Connected";
     var disconnectedText = "Disconnected";
     var reconnectingText = "Reconnecting";
@@ -14,6 +15,7 @@ linkPortApp.controller('LinkPortCtrl', function($scope, mySocket){
     connected = false;
     $scope.userCount = 0;
     $scope.buttonText = sendText;
+    $scope.location = $location.path();
     var sendIfPossible = function (){
 
         if(connected && $scope.userCount > 0 && pendingLink){
@@ -25,10 +27,14 @@ linkPortApp.controller('LinkPortCtrl', function($scope, mySocket){
     };
 
     var onConnect = function (){
+        mySocket.emit('join', $location.absUrl());
+    };
+    var onJoin = function(){
         $scope.statusText = connectedText;
         connected = true;
         sendIfPossible();
     };
+   
     
     
     $scope.shareLink = function(){
@@ -41,6 +47,10 @@ linkPortApp.controller('LinkPortCtrl', function($scope, mySocket){
     
     mySocket.on('connect', function(link){
         onConnect();
+    });
+
+    mySocket.on('join_success', function(link){
+            onJoin();
     });
         
     mySocket.on('reconnect', function(link){
@@ -66,7 +76,7 @@ linkPortApp.controller('LinkPortCtrl', function($scope, mySocket){
 
     //update on user's connectedText is received
     mySocket.on('count', function(total){
-        $scope.userCount = total - 1;
+        $scope.userCount = total-1;
         if($scope.userCount > 0){
             sendIfPossible();
         }
